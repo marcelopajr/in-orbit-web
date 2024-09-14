@@ -6,7 +6,7 @@ type SummaryResponse = {
     {
       id: string;
       title: string;
-      completedAt: string;
+      createdAt: string;
     }[]
   >;
 };

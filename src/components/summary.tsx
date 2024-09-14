@@ -18,8 +18,8 @@ export function Summary() {
 
   if (!data) return null;
 
-  const firstDayOfTheWeek = dayjs().startOf('week').format('DD MMM');
-  const lastDayOfTheWeek = dayjs().endOf('week').format('DD MMM');
+  const firstDayOfTheWeek = dayjs().startOf('week').format('MMM DD');
+  const lastDayOfTheWeek = dayjs().endOf('week').format('MMM DD');
 
   const completedPercentage =
     Math.round((data?.completed * 100) / data?.total) || 0;
@@ -68,7 +68,7 @@ export function Summary() {
         {data?.goalsPerDay &&
           Object.entries(data?.goalsPerDay).map(([date, goals]) => {
             const weekDay = dayjs(date).format('dddd');
-            const formattedDate = dayjs(date).format('DD MMMM');
+            const formattedDate = dayjs(date).format('MMMM DD');
 
             return (
               <div key={date} className="flex flex-col gap-4">
@@ -81,7 +81,7 @@ export function Summary() {
 
                 <ul className="flex flex-col gap-3">
                   {goals.map((goal) => {
-                    const time = dayjs(goal.completedAt).format('h:mm a');
+                    const parsedTime = dayjs(goal.createdAt).format('h:mm a');
 
                     return (
                       <li key={goal.id} className="flex items-center gap-2">
@@ -89,7 +89,7 @@ export function Summary() {
                         <span className="text-sm text-zinc-400">
                           You completed "
                           <span className="text-zinc-100">{goal.title}</span>"
-                          at <span className="text-zinc-100">{time}</span>
+                          at <span className="text-zinc-100">{parsedTime}</span>
                         </span>
                       </li>
                     );
