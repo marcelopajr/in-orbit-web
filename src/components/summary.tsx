@@ -21,8 +21,7 @@ export function Summary() {
   const firstDayOfTheWeek = dayjs().startOf('week').format('MMM DD');
   const lastDayOfTheWeek = dayjs().endOf('week').format('MMM DD');
 
-  const completedPercentage =
-    Math.round((data?.completed * 100) / data?.total) || 0;
+  const completedPercentage = Math.round((data?.completed * 100) / data.total);
 
   return (
     <div className="py-10 max-w-[480px] px-5 mx-auto flex flex-col gap-6">
@@ -43,8 +42,8 @@ export function Summary() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <Progress value={data?.completed} max={data?.total}>
-          <ProgressIndicator style={{ width: `${completedPercentage}%}` }} />
+        <Progress value={data.completed} max={data.total}>
+          <ProgressIndicator style={{ width: `${completedPercentage}%` }} />
         </Progress>
 
         <div className="flex items-center justify-between text-xs text-zinc-400">
